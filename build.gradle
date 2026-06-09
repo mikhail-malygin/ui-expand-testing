@@ -16,7 +16,8 @@ def
         allureJunitVersion = '2.34.0',
         allureSelenideVersion = '2.35.2',
         jacksonVersion = '2.21.2',
-        ownerVersion = '1.0.12'
+        ownerVersion = '1.0.12',
+        dataFakerVersion = '2.5.4'
 
 allure {
     version = "$allureJunitVersion"
@@ -34,7 +35,8 @@ dependencies {
             "io.qameta.allure:allure-junit5:$allureJunitVersion",
             "io.qameta.allure:allure-selenide:$allureSelenideVersion",
             "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",
-            "org.aeonbits.owner:owner:$ownerVersion")
+            "org.aeonbits.owner:owner:$ownerVersion",
+            "net.datafaker:datafaker:$dataFakerVersion")
     testRuntimeOnly (
             'org.junit.platform:junit-platform-launcher',
             'org.junit.jupiter:junit-jupiter-engine:5.11.4'
@@ -43,10 +45,35 @@ dependencies {
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
+    systemProperty "allure.results.directory", "${projectDir}/allure-results"
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat = "short"
         }
+    }
+}
+
+tasks.register('positiveTests', Test) {
+    testClassesDirs = tasks.named('test').get().testClassesDirs
+    classpath = tasks.named('test').get().classpath
+    useJUnitPlatform {
+        includeTags 'PositiveTests'
+    }
+}
+
+tasks.register('negativeTests', Test) {
+    testClassesDirs = tasks.named('test').get().testClassesDirs
+    classpath = tasks.named('test').get().classpath
+    useJUnitPlatform {
+        includeTags 'NegativeTests'
+    }
+}
+
+tasks.register('login', Test) {
+    testClassesDirs = tasks.named('test').get().testClassesDirs
+    classpath = tasks.named('test').get().classpath
+    useJUnitPlatform {
+        includeTags 'Login'
     }
 }

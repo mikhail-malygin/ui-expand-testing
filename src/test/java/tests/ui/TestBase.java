@@ -6,13 +6,12 @@ import config.AuthConfig;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import io.qameta.allure.selenide.LogType;
+import net.datafaker.Faker;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.chrome.ChromeOptions;
-import pages.LoginPage;
-import pages.MainPage;
-import pages.SecureLoginAreaPage;
 
 import java.util.logging.Level;
 
@@ -21,9 +20,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class TestBase {
 
     protected static final AuthConfig config = ConfigFactory.create(AuthConfig.class);
-    MainPage mainPage = new MainPage();
-    LoginPage loginPage = new LoginPage();
-    SecureLoginAreaPage securePage = new SecureLoginAreaPage();
+    protected Faker faker = new Faker();
 
     @BeforeAll
     public static void setUp() {
@@ -45,7 +42,11 @@ public class TestBase {
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
         open("");
+    }
 
+    @BeforeEach
+    public void openMainPage() {
+        open("");
 
     }
 
