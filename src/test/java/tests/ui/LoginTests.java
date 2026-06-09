@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static io.qameta.allure.Allure.step;
 
-public class WebUITests extends TestBase {
+public class LoginTests extends TestBase {
 
     @Test
     @Tag("PositiveTests")

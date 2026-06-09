@@ -17,7 +17,8 @@ def
         allureSelenideVersion = '2.35.2',
         jacksonVersion = '2.21.2',
         ownerVersion = '1.0.12',
-        dataFakerVersion = '2.5.4'
+        dataFakerVersion = '2.5.4',
+        junitParamVersion = '6.1.0'
 
 allure {
     version = "$allureJunitVersion"
@@ -27,7 +28,7 @@ allure {
 }
 
 dependencies {
-    testImplementation (
+    testImplementation(
             "com.codeborne:selenide:$selenideVersion",
             "org.junit.jupiter:junit-jupiter-api:$junitVersion",
             "org.slf4j:slf4j-api:$slf4jVersion",
@@ -36,8 +37,9 @@ dependencies {
             "io.qameta.allure:allure-selenide:$allureSelenideVersion",
             "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",
             "org.aeonbits.owner:owner:$ownerVersion",
-            "net.datafaker:datafaker:$dataFakerVersion")
-    testRuntimeOnly (
+            "net.datafaker:datafaker:$dataFakerVersion",
+            "org.junit.jupiter:junit-jupiter-params:$junitParamVersion")
+    testRuntimeOnly(
             'org.junit.platform:junit-platform-launcher',
             'org.junit.jupiter:junit-jupiter-engine:5.11.4'
     )
@@ -75,5 +77,13 @@ tasks.register('login', Test) {
     classpath = tasks.named('test').get().classpath
     useJUnitPlatform {
         includeTags 'Login'
+    }
+}
+
+tasks.register('inputs', Test) {
+    testClassesDirs = tasks.named('test').get().testClassesDirs
+    classpath = tasks.named('test').get().classpath
+    useJUnitPlatform {
+        includeTags 'Inputs'
     }
 }
