@@ -1,0 +1,52 @@
+plugins {
+    id 'java-library'
+    id 'io.qameta.allure' version '4.0.2'
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+def
+        selenideVersion = '7.7.3',
+        junitVersion = '6.0.3',
+        slf4jVersion = '2.0.18',
+        assertjVersion = '3.27.7',
+        allureJunitVersion = '2.34.0',
+        allureSelenideVersion = '2.35.2',
+        jacksonVersion = '2.21.2',
+        ownerVersion = '1.0.12'
+
+allure {
+    version = "$allureJunitVersion"
+    adapter {
+        resultsDir.set(file("${projectDir}/allure-results"))
+    }
+}
+
+dependencies {
+    testImplementation (
+            "com.codeborne:selenide:$selenideVersion",
+            "org.junit.jupiter:junit-jupiter-api:$junitVersion",
+            "org.slf4j:slf4j-api:$slf4jVersion",
+            "org.assertj:assertj-core:$assertjVersion",
+            "io.qameta.allure:allure-junit5:$allureJunitVersion",
+            "io.qameta.allure:allure-selenide:$allureSelenideVersion",
+            "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",
+            "org.aeonbits.owner:owner:$ownerVersion")
+    testRuntimeOnly (
+            'org.junit.platform:junit-platform-launcher',
+            'org.junit.jupiter:junit-jupiter-engine:5.11.4'
+    )
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat = "short"
+        }
+    }
+}
