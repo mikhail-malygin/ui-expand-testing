@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import pages.InputsPage;
-import pages.MainPage;
 
 import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
 public class InputsTests extends TestBase {
@@ -26,10 +26,9 @@ public class InputsTests extends TestBase {
     public void shouldDisplayTextsInputsTests(String number, String text, String password, String date) {
 
         step("Go to a inputs page and type different texts in inputs", () -> {
-            MainPage mainPage = new MainPage();
             InputsPage inputsPage = new InputsPage();
 
-            mainPage.goToInputsPageButton.click();
+            open("inputs");
             inputsPage.typeNumber(number)
                     .typeText(text)
                     .typePassword(password)
@@ -66,10 +65,9 @@ public class InputsTests extends TestBase {
     public void shouldDisplayEmptyTextsInputsTests() {
 
         step("Go to a inputs page and type different texts in inputs", () -> {
-            MainPage mainPage = new MainPage();
             InputsPage inputsPage = new InputsPage();
 
-            mainPage.goToInputsPageButton.click();
+            open("inputs");
             inputsPage.displayInputsButton.click();
         });
 
@@ -106,10 +104,9 @@ public class InputsTests extends TestBase {
         String date = faker.timeAndDate().future(60, 30, TimeUnit.DAYS, "dd.MM.yyyy");
 
         step("Go to a inputs page and type different texts in inputs", () -> {
-            MainPage mainPage = new MainPage();
             InputsPage inputsPage = new InputsPage();
 
-            mainPage.goToInputsPageButton.click();
+            open("inputs");
             inputsPage.typeNumber(text)
                     .typeText(text)
                     .typePassword(password)

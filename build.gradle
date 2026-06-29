@@ -87,3 +87,11 @@ tasks.register('inputs', Test) {
         includeTags 'Inputs'
     }
 }
+
+tasks.register('checkboxes', Test) {
+    testClassesDirs = tasks.named('test').get().testClassesDirs
+    classpath = tasks.named('test').get().classpath
+    useJUnitPlatform {
+        includeTags 'Checkboxes'
+    }
+}

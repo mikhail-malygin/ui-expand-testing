@@ -5,11 +5,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
-import pages.MainPage;
 import pages.SecureLoginAreaPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
 public class LoginTests extends TestBase {
@@ -22,10 +22,9 @@ public class LoginTests extends TestBase {
     public void shouldSuccessfulLoginTest() {
 
         step("Go to a login page and login with the correct credentials", () -> {
-            MainPage mainPage = new MainPage();
             LoginPage loginPage = new LoginPage();
 
-            mainPage.goToLoginPageButton.click();
+            open("login");
             loginPage.enterLoginUsername(config.username())
                     .enterLoginPassword(config.password())
                     .submitLogin();
@@ -53,10 +52,9 @@ public class LoginTests extends TestBase {
     public void shouldUnsuccessfulInvalidUsernameLoginTest() {
 
         step("Go to a login page and try to login with the wrong username", () -> {
-            MainPage mainPage = new MainPage();
             LoginPage loginPage = new LoginPage();
 
-            mainPage.goToLoginPageButton.click();
+            open("login");
             loginPage.enterLoginUsername(faker.credentials().username())
                     .enterLoginPassword(config.password())
                     .submitLogin();
@@ -77,10 +75,9 @@ public class LoginTests extends TestBase {
     public void shouldUnsuccessfulInvalidPasswordLoginTest() {
 
         step("Go to a login page and try to login with the wrong password", () -> {
-            MainPage mainPage = new MainPage();
             LoginPage loginPage = new LoginPage();
 
-            mainPage.goToLoginPageButton.click();
+            open("login");
             loginPage.enterLoginUsername(config.username())
                     .enterLoginPassword(faker.credentials().weakPassword())
                     .submitLogin();
@@ -102,10 +99,9 @@ public class LoginTests extends TestBase {
     public void shouldUnsuccessfulEmptyCredentialsLoginTest() {
 
         step("Go to a login page and try to login with the empty credentials", () -> {
-            MainPage mainPage = new MainPage();
             LoginPage loginPage = new LoginPage();
 
-            mainPage.goToLoginPageButton.click();
+            open("login");
             loginPage.submitLogin();
         });
 
