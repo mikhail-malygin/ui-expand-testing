@@ -80,14 +80,12 @@ public class CheckboxTests extends TestBase {
     @Tag("Checkboxes")
     @DisplayName("Reload doesn't change checkboxes")
     public void shouldNothingChangesCheckboxesAfterReloadPageTests() {
-
+        CheckboxPage checkboxPage = new CheckboxPage();
         List<Boolean> checkboxes = new ArrayList<>();
 
         step("Reload the checkboxes page", () -> {
-            CheckboxPage checkboxPage = new CheckboxPage();
 
             open("checkboxes");
-
             for (SelenideElement element : checkboxPage.listCheckboxes) {
                 if (element.isSelected()) {
                     checkboxes.add(true);
@@ -100,7 +98,6 @@ public class CheckboxTests extends TestBase {
         });
 
         step("Checks nothing changes in checkboxes after reload the page", () -> {
-            CheckboxPage checkboxPage = new CheckboxPage();
             for (int i = 0; i < checkboxes.size(); i++) {
                 assertThat(checkboxPage.listCheckboxes.get(i).isSelected()).isEqualTo(checkboxes.get(i));
             }

@@ -20,9 +20,10 @@ public class LoginTests extends TestBase {
     @DisplayName("Successful login")
     @Description("Test successful login with the correct credentials")
     public void shouldSuccessfulLoginTest() {
+        LoginPage loginPage = new LoginPage();
+        SecureLoginAreaPage securePage = new SecureLoginAreaPage();
 
         step("Go to a login page and login with the correct credentials", () -> {
-            LoginPage loginPage = new LoginPage();
 
             open("login");
             loginPage.enterLoginUsername(config.username())
@@ -31,17 +32,12 @@ public class LoginTests extends TestBase {
         });
 
         step("Check successful login", () -> {
-            SecureLoginAreaPage securePage = new SecureLoginAreaPage();
 
             securePage.successfulLoginMessage.shouldHave(text("You logged into a secure area!"));
             securePage.logoutRedButton.shouldBe(visible);
         });
 
-        step("Logout", () -> {
-            SecureLoginAreaPage securePage = new SecureLoginAreaPage();
-
-            securePage.logoutRedButton.click();
-        });
+        step("Logout", () -> securePage.logoutRedButton.click());
     }
 
     @Test
@@ -50,9 +46,9 @@ public class LoginTests extends TestBase {
     @DisplayName("Unsuccessful login using an invalid username")
     @Description("Test unsuccessful login with the incorrect credentials: username")
     public void shouldUnsuccessfulInvalidUsernameLoginTest() {
+        LoginPage loginPage = new LoginPage();
 
         step("Go to a login page and try to login with the wrong username", () -> {
-            LoginPage loginPage = new LoginPage();
 
             open("login");
             loginPage.enterLoginUsername(faker.credentials().username())
@@ -61,7 +57,6 @@ public class LoginTests extends TestBase {
         });
 
         step("Check unsuccessful login", () -> {
-            LoginPage loginPage = new LoginPage();
 
             loginPage.redAlertMessage.shouldHave(text("Your username is invalid!"));
         });
@@ -73,9 +68,9 @@ public class LoginTests extends TestBase {
     @DisplayName("Unsuccessful login using an invalid password")
     @Description("Test unsuccessful login with the incorrect credentials: password")
     public void shouldUnsuccessfulInvalidPasswordLoginTest() {
+        LoginPage loginPage = new LoginPage();
 
         step("Go to a login page and try to login with the wrong password", () -> {
-            LoginPage loginPage = new LoginPage();
 
             open("login");
             loginPage.enterLoginUsername(config.username())
@@ -84,7 +79,6 @@ public class LoginTests extends TestBase {
         });
 
         step("Check unsuccessful login", () -> {
-            LoginPage loginPage = new LoginPage();
 
             loginPage.redAlertMessage.shouldBe(visible);
             loginPage.redAlertMessage.shouldHave(text("Your password is invalid!"));
@@ -97,16 +91,15 @@ public class LoginTests extends TestBase {
     @DisplayName("Unsuccessful login with empty credentials")
     @Description("Test unsuccessful login with the empty credentials")
     public void shouldUnsuccessfulEmptyCredentialsLoginTest() {
+        LoginPage loginPage = new LoginPage();
 
         step("Go to a login page and try to login with the empty credentials", () -> {
-            LoginPage loginPage = new LoginPage();
 
             open("login");
             loginPage.submitLogin();
         });
 
         step("Check unsuccessful login", () -> {
-            LoginPage loginPage = new LoginPage();
 
             loginPage.redAlertMessage.shouldHave(text("Your username is invalid!"));
         });

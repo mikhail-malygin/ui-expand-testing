@@ -95,3 +95,19 @@ tasks.register('checkboxes', Test) {
         includeTags 'Checkboxes'
     }
 }
+
+tasks.register('keyPresses', Test) {
+    testClassesDirs = tasks.named('test').get().testClassesDirs
+    classpath = tasks.named('test').get().classpath
+    useJUnitPlatform {
+        includeTags 'KeyPresses'
+    }
+}
+
+tasks.register('autoComplete', Test) {
+    testClassesDirs = tasks.named('test').get().testClassesDirs
+    classpath = tasks.named('test').get().classpath
+    useJUnitPlatform {
+        includeTags 'AutoComplete'
+    }
+}

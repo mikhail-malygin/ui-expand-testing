@@ -24,9 +24,9 @@ public class InputsTests extends TestBase {
     @DisplayName("Display correct texts in inputs")
     @CsvFileSource(resources = "/testData/inputsValues.csv", numLinesToSkip = 1)
     public void shouldDisplayTextsInputsTests(String number, String text, String password, String date) {
+        InputsPage inputsPage = new InputsPage();
 
         step("Go to a inputs page and type different texts in inputs", () -> {
-            InputsPage inputsPage = new InputsPage();
 
             open("inputs");
             inputsPage.typeNumber(number)
@@ -37,7 +37,6 @@ public class InputsTests extends TestBase {
         });
 
         step("Check displaying texts", () -> {
-            InputsPage inputsPage = new InputsPage();
 
             inputsPage.numberOutput.shouldHave(text(number));
             inputsPage.textOutput.shouldHave(text(text));
@@ -46,7 +45,6 @@ public class InputsTests extends TestBase {
         });
 
         step("Check clearing texts", () -> {
-            InputsPage inputsPage = new InputsPage();
 
             inputsPage.clearInputsButton.click();
 
@@ -63,16 +61,15 @@ public class InputsTests extends TestBase {
     @Tag("Inputs")
     @DisplayName("Display empty texts in inputs")
     public void shouldDisplayEmptyTextsInputsTests() {
+        InputsPage inputsPage = new InputsPage();
 
         step("Go to a inputs page and type different texts in inputs", () -> {
-            InputsPage inputsPage = new InputsPage();
 
             open("inputs");
             inputsPage.displayInputsButton.click();
         });
 
         step("Check displaying texts", () -> {
-            InputsPage inputsPage = new InputsPage();
 
             inputsPage.numberOutput.shouldBe(empty);
             inputsPage.textOutput.shouldBe(empty);
@@ -81,7 +78,6 @@ public class InputsTests extends TestBase {
         });
 
         step("Check clearing texts", () -> {
-            InputsPage inputsPage = new InputsPage();
 
             inputsPage.clearInputsButton.click();
 
@@ -102,9 +98,9 @@ public class InputsTests extends TestBase {
         String text = faker.text().text();
         String password = faker.credentials().password();
         String date = faker.timeAndDate().future(60, 30, TimeUnit.DAYS, "dd.MM.yyyy");
+        InputsPage inputsPage = new InputsPage();
 
         step("Go to a inputs page and type different texts in inputs", () -> {
-            InputsPage inputsPage = new InputsPage();
 
             open("inputs");
             inputsPage.typeNumber(text)
@@ -115,7 +111,6 @@ public class InputsTests extends TestBase {
         });
 
         step("Check displaying texts", () -> {
-            InputsPage inputsPage = new InputsPage();
 
             inputsPage.numberOutput.shouldBe(empty);
             inputsPage.textOutput.shouldHave(text(text));
@@ -124,7 +119,6 @@ public class InputsTests extends TestBase {
         });
 
         step("Check clearing texts", () -> {
-            InputsPage inputsPage = new InputsPage();
 
             inputsPage.clearInputsButton.click();
 

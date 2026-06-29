@@ -26,9 +26,9 @@ public class KeyPressesTests extends TestBase {
     public void shouldDisplayTypedSymbolTests() {
         List<String> typedSymbols = Arrays.asList("A", "b", "7");
         List<String> typedButtons = Arrays.asList("ESCAPE", "CONTROL", "BACK_SPACE", "TAB", "SHIFT", "ALT", "ENTER");
+        KeyPressesPage keyPressesPage = new KeyPressesPage();
 
         step("Type symbol and check its display", () -> {
-            KeyPressesPage keyPressesPage = new KeyPressesPage();
 
             open("key-presses");
 
