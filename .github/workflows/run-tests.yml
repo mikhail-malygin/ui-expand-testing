@@ -1,0 +1,46 @@
+name: Run UI-Expanding tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '23'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Setup Google Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      - name: Run Selenide tests
+        run: ./gradlew test --no-daemon -Dselenide.headless=true
+
+      - name: Upload Test Artifacts (Screenshots & Reports)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: selenide-gradle-results
+          path: |
+            build/reports/tests/test/
+            build/reports/selenide/
+          retention-days: 14
