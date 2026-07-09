@@ -3,8 +3,6 @@ package tests.ui;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.parallel.Execution;
-import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import pages.InputsPage;
@@ -21,7 +19,6 @@ public class InputsTests extends TestBase {
             "for input: text {1} should display {1} " +
             "for input: password {2} should display {2}  " +
             "for input: date {3} should display {3}")
-    @Execution(ExecutionMode.SAME_THREAD)
     @Tag("PositiveTests")
     @Tag("Inputs")
     @DisplayName("Display correct texts in inputs")

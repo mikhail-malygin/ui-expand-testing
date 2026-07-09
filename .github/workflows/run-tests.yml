@@ -36,6 +36,7 @@ jobs:
         env:
           AUTH_USERNAME: ${{ secrets.AUTH_USERNAME }}
           AUTH_PASSWORD: ${{ secrets.AUTH_PASSWORD }}
+          LANG: "en_GB.UTF-8"
         run: ./gradlew test --no-daemon -Dauth.username="$AUTH_USERNAME" -Dauth.password="$AUTH_PASSWORD" -Dselenide.headless=true
 
       - name: Deploy Allure Report to GitHub Pages
