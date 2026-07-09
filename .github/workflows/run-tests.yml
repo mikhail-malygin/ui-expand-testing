@@ -38,12 +38,17 @@ jobs:
           AUTH_PASSWORD: ${{ secrets.AUTH_PASSWORD }}
         run: ./gradlew test --no-daemon -Dauth.username="$AUTH_USERNAME" -Dauth.password="$AUTH_PASSWORD" -Dselenide.headless=true
 
-      - name: Upload Test Artifacts (Screenshots & Reports)
-        uses: actions/upload-artifact@v4
+      - name: Deploy Allure Report to GitHub Pages
         if: always()
+        uses: simple-elf/allure-report-action@master
         with:
-          name: selenide-gradle-results
-          path: |
-            build/reports/tests/test/
-            build/reports/selenide/
-          retention-days: 14
+            allure_results: build/allure-results # Для Gradle путь по умолчанию обычно build/allure-results
+            allure_history: allure-history
+            keep_reports: 10
+
+      - name: Publish report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: allure-history
