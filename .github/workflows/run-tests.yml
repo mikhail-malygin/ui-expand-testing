@@ -33,7 +33,10 @@ jobs:
         run: chmod +x gradlew
 
       - name: Run Selenide tests
-        run: ./gradlew test --no-daemon -Dselenide.headless=true
+        env:
+          AUTH_USERNAME: ${{ secrets.AUTH_USERNAME }}
+          AUTH_PASSWORD: ${{ secrets.AUTH_PASSWORD }}
+        run: ./gradlew test --no-daemon -Dauth.username="$AUTH_USERNAME" -Dauth.password="$AUTH_PASSWORD" -Dselenide.headless=true
 
       - name: Upload Test Artifacts (Screenshots & Reports)
         uses: actions/upload-artifact@v4
