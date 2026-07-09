@@ -1,0 +1,2 @@
+[2026-07-09T05:32:14.965Z] [FINE] https://practice.expandtesting.com/inputs - [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+[2026-07-09T05:32:23.709Z] [SEVERE] security - Framing 'https://www.google.com/' violates the following report-only Content Security Policy directive: "frame-ancestors 'self'". The violation has been logged, but no further action has been taken.
