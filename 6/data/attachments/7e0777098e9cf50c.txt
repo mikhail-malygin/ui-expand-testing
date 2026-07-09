@@ -1,2 +1,0 @@
-[2026-07-09T06:10:42.842Z] [SEVERE] https://practice.expandtesting.com/socket.io/?EIO=4&transport=polling&t=Pz5V_bK&sid=CTuYPt9bQH-FTLrnAJwB - Failed to load resource: the server responded with a status of 400 ()
-[2026-07-09T06:10:43.723Z] [FINE] https://practice.expandtesting.com/inputs - [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
