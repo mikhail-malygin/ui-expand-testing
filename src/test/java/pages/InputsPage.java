@@ -43,9 +43,12 @@ public class InputsPage {
         return this;
     }
 
-    public String transformDate(String date) {
+    public String transformDate(String inputDate) {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        return LocalDate.parse(date, inputFormatter).toString();
+        LocalDate date = LocalDate.parse(inputDate, inputFormatter);
+
+        return date.format(outputFormatter);
     }
 }
