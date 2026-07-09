@@ -28,7 +28,7 @@ public class InputsTests extends TestBase {
     @CsvFileSource(resources = "/testData/inputsValues.csv", numLinesToSkip = 1)
     public void shouldDisplayTextsInputsTests(String number, String text, String password, String date) {
         InputsPage inputsPage = new InputsPage();
-
+        String expectedDate = inputsPage.transformDate(date);
         step("Go to a inputs page and type different texts in inputs", () -> {
 
             open("inputs");
@@ -44,7 +44,7 @@ public class InputsTests extends TestBase {
             inputsPage.numberOutput.shouldHave(text(number));
             inputsPage.textOutput.shouldHave(text(text));
             inputsPage.passwordOutput.shouldHave(text(password));
-            inputsPage.dateOutput.shouldHave(text(inputsPage.transformDate(date)));
+            inputsPage.dateOutput.shouldHave(text(expectedDate));
         });
 
         step("Check clearing texts", () -> {
@@ -102,6 +102,7 @@ public class InputsTests extends TestBase {
         String password = faker.credentials().password();
         String date = faker.timeAndDate().future(60, 30, TimeUnit.DAYS, "dd.MM.yyyy");
         InputsPage inputsPage = new InputsPage();
+        String expectedDate = inputsPage.transformDate(date);
 
         step("Go to a inputs page and type different texts in inputs", () -> {
 
@@ -118,7 +119,7 @@ public class InputsTests extends TestBase {
             inputsPage.numberOutput.shouldBe(empty);
             inputsPage.textOutput.shouldHave(text(text));
             inputsPage.passwordOutput.shouldHave(text(password));
-            inputsPage.dateOutput.shouldHave(text(inputsPage.transformDate(date)));
+            inputsPage.dateOutput.shouldHave(text(expectedDate));
         });
 
         step("Check clearing texts", () -> {
