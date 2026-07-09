@@ -1,0 +1,3 @@
+[2026-07-09T10:18:59.862Z] [SEVERE] https://practice.expandtesting.com/socket.io/?EIO=4&transport=polling&t=Pz6OqYh&sid=M3HhfAELTuj3YSVHALU3 - Failed to load resource: the server responded with a status of 400 ()
+[2026-07-09T10:18:59.969Z] [SEVERE] https://practice.expandtesting.com/socket.io/socket.io.min.js 5 WebSocket connection to 'wss://practice.expandtesting.com/socket.io/?EIO=4&transport=websocket&sid=M3HhfAELTuj3YSVHALU3' failed: Error during WebSocket handshake: Unexpected response code: 400
+[2026-07-09T10:19:10.492Z] [SEVERE] https://practice.expandtesting.com/socket.io/socket.io.min.js 5 WebSocket is already in CLOSING or CLOSED state.
