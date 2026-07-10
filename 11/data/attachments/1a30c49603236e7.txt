@@ -1,2 +1,0 @@
-[2026-07-09T10:19:13.286Z] [SEVERE] https://practice.expandtesting.com/socket.io/socket.io.min.js 5 WebSocket connection to 'wss://practice.expandtesting.com/socket.io/?EIO=4&transport=websocket&sid=cP21GYfXo6qpHEOiALVV' failed: Error during WebSocket handshake: Unexpected response code: 400
-[2026-07-09T10:19:14.130Z] [FINE] https://practice.expandtesting.com/inputs - [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
